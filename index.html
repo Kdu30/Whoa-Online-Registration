@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WHOA Registration Portal</title>
+    <style>
+        /* New Loader effect */
+        .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .loader {
+          --cell-size: 52px;
+          --cell-spacing: 1px;
+          --cells: 3;
+          --total-size: calc(var(--cells) * (var(--cell-size) + 2 * var(--cell-spacing)));
+          display: flex;
+          flex-wrap: wrap;
+          width: var(--total-size);
+          height: var(--total-size);
+        }
+
+        .cell {
+          flex: 0 0 var(--cell-size);
+          margin: var(--cell-spacing);
+          background-color: transparent;
+          box-sizing: border-box;
+          border-radius: 4px;
+          animation: 2s ripple ease infinite;
+        }
+
+        .cell.d-1 {
+          animation-delay: 100ms;
+        }
+
+        .cell.d-2 {
+          animation-delay: 200ms;
+        }
+
+        .cell.d-3 {
+          animation-delay: 300ms;
+        }
+
+        .cell.d-4 {
+          animation-delay: 400ms;
+        }
+
+        .cell:nth-child(1) {
+          --cell-color: #00FF87;
+        }
+
+        .cell:nth-child(2) {
+          --cell-color: #0CFD95;
+        }
+
+        .cell:nth-child(3) {
+          --cell-color: #17FBA2;
+        }
+
+        .cell:nth-child(4) {
+          --cell-color: #23F9B2;
+        }
+
+        .cell:nth-child(5) {
+          --cell-color: #30F7C3;
+        }
+
+        .cell:nth-child(6) {
+          --cell-color: #3DF5D4;
+        }
+
+        .cell:nth-child(7) {
+          --cell-color: #45F4DE;
+        }
+
+        .cell:nth-child(8) {
+          --cell-color: #53F1F0;
+        }
+
+        .cell:nth-child(9) {
+          --cell-color: #60EFFF;
+        }
+
+        /*Animation*/
+        @keyframes ripple {
+          0% {
+            background-color: transparent;
+          }
+
+          30% {
+            background-color: var(--cell-color);
+          }
+
+          60% {
+            background-color: transparent;
+          }
+
+          100% {
+            background-color: transparent;
+          }
+        }
+
+        /* Background and form styling */
+        .background-form-container {
+            display: none; /* Hide the container initially */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('WHOA.JPG') no-repeat center center fixed;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .registration-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .registration-form input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            background-color: transparent;
+        }
+
+        .registration-form button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to right, #44c767, #29a634);
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect */
+        .registration-form button:hover {
+            background: linear-gradient(to right, #1bea3a, #14601b);
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: green;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .success-message::before {
+            content: '\2713'; /* Unicode for checkmark symbol */
+            display: block;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader">
+            <div class="cell d-0"></div>
+            <div class="cell d-1"></div>
+            <div class="cell d-2"></div>
+
+            <div class="cell d-1"></div>
+            <div class="cell d-2"></div>
+
+            <div class="cell d-2"></div>
+            <div class="cell d-3"></div>
+
+            <div class="cell d-3"></div>
+            <div class="cell d-4"></div>
+        </div>
+    </div>
+
+    <div class="background-form-container">
+        <div class="registration-form">
+            <h2>WHOA Registration Portal</h2>
+            <form id="registration-form">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="text" name="address" placeholder="Complete Address" required>
+                <input type="text" name="block" placeholder="Block Number" required>
+                <input type="text" name="lot" placeholder="Lot Number" required>
+                <input type="number" name="headcounts" placeholder="Family Headcounts" required>
+                <button type="submit">Register Now</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="success-message">
+        You have been Successfully Registered
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.background-form-container').hide(); // Hide the container initially
+
+            setTimeout(function() {
+                $('.loader-container').fadeOut(300, function() {
+                    $('.background-form-container').fadeIn(300); // Display the container after the loading effect
+                });
+            }, 20000); // Set the timeout duration (in milliseconds) for the loading effect (20 seconds)
+
+            $('#registration-form').validate();
+
+            $('#registration-form').submit(function(e) {
+                e.preventDefault();
+
+                if ($(this).valid()) {
+                    var formData = $(this).serialize();
+
+                    $('.loader-container').hide(); // Hide the loader
+
+                    // Call your function to store the data to Google Spreadsheet
+                    storeData(formData)
+                        .then(function() {
+                            showSuccessMessage();
+                            resetForm();
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+                }
+            });
+
+            function storeData(formData) {
+                return new Promise(function(resolve, reject) {
+                    // Use the Google Sheets API to store the form data
+                    // Replace 'SPREADSHEET_ID' with your actual Google Spreadsheet ID
+                    var spreadsheetId = '1NIdQrJZ9iMwYN3ven9SM9d92TzQxohx8wYEIjEid3T8';
+                    var url = `https://script.google.com/macros/s/AKfycbzGV2SRb-ozwV2B3Zyu5NtIMblD0Y9j5TBuqz-pd_pHPUp-q5v36j4flGwIxu30nFdB1w/exec?spreadsheetId=${spreadsheetId}`;
+
+                    $.post(url, formData)
+                        .done(function() {
+                            resolve();
+                        })
+                        .fail(function(error) {
+                            reject(error);
+                        });
+                });
+            }
+
+            function showSuccessMessage() {
+                $('.success-message').fadeIn(300).delay(5000).fadeOut(300);
+            }
+
+            function resetForm() {
+                $('#registration-form')[0].reset();
+            }
+        });
+    </script>
+</body>
+</html>
